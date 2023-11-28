@@ -1,0 +1,43 @@
+#!bin/bash
+
+source $MINICONDA_PATH/etc/profile.d/conda.sh
+
+set -x
+conda init bash
+conda activate torch_nm
+
+data_to_encode="both"
+dataset_name="burgers"
+sub_tr=1
+sub_te=1
+w0=5
+model_type="bacon"
+base_freq_multiplier=1
+quantization_multiplier=2
+hidden_dim=64
+latent_dim=64
+hypernet_depth=1
+hypernet_width=256
+lr_inr=5e-4
+lr_modulations=5e-4
+lr_code=0.01
+gamma_step=0.99
+number_of_lr_steps=10
+batch_size=64
+batch_size_val=64
+epochs=15000
+lr_mlp=1e-3
+lr_mlp_final_value=1e-5
+weight_decay_mlp=1e-2
+use_scheduler=True
+inference_model=mlp
+activation=swish
+mlp_iters_per_epoch=5
+mlp_width=32
+mlp_depth=3
+batch_size_mlp=64
+dropout=0.
+filter_type=fourier
+step_size=0.2
+
+python3 training/jz_inr_regression.py "data.dataset_name=${dataset_name}" "data.sub_tr=${sub_tr}" "data.sub_te=${sub_te}" "inr.latent_dim=${latent_dim}" "inr.hidden_dim=${hidden_dim}" "inr.hypernet_depth=${hypernet_depth}" "inr.hypernet_width=${hypernet_width}" "optim.epochs=${epochs}" "optim.batch_size=${batch_size}" "inr.model_type=${model_type}" "inr.w0=${w0}" "inr.base_freq_multiplier=${base_freq_multiplier}" "inr.quantization_multiplier=${quantization_multiplier}" "optim.lr_inr=${lr_inr}"  "optim.lr_code=${lr_code}" "optim.lr_modulations=${lr_modulations}"  "optim.gamma_step=${gamma_step}" "optim.number_of_lr_steps=${number_of_lr_steps}" "inr.input_scales=[1/8, 1/8, 1/4, 1/2]" "inr.output_layers=[2, 3]" "optim_mlp.lr_mlp=${lr_mlp}" "optim_mlp.weight_decay=${weight_decay_mlp}" "optim_mlp.use_scheduler=${use_scheduler}" "optim_mlp.mlp_iters_per_epoch=${mlp_iters_per_epoch}" "optim_mlp.final_lr_value=${lr_mlp_final_value}" "mlp.width=${mlp_width}" "mlp.depth=${mlp_depth}" "mlp.inference_model=${inference_model}" "mlp.dropout=${dropout}" "optim_mlp.batch_size=${batch_size_mlp}" "mlp.activation=${activation}" "inr.filter_type=${filter_type}" "optim.inner_steps=3" "inr.modulate_scale=False" "inr.modulate_shift=True" "mlp.step_size=${step_size}" "inr.model_type=bacon" "inr.depth=5"

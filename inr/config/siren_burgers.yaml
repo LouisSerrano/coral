@@ -1,0 +1,59 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/data/wangt/mp_pde/"
+  dataset_name: "mp-pde-burgers" 
+  data_to_encode:
+  ntrain : 2048   #full=2048
+  ntest : 128    # full=128
+  sub_tr : 1
+  sub_te : 1
+  sub_from: 1
+  seed: 123
+  same_grid: True
+  sequence_length: 2
+
+optim:
+  batch_size: 128 # 32 # 64
+  batch_size_val: 
+  lr_inr : 5e-6
+  gamma_step : 0.9
+  lr_code : 1e-2
+  meta_lr_code : 0
+  weight_decay_code: 0
+  inner_steps : 3
+  test_inner_steps : 3
+  epochs : 5000 # 1000
+
+inr:
+  model_type : "siren"
+  latent_dim : 64
+  depth : 4 # 4
+  hidden_dim : 128
+  w0 : 30
+  use_latent: True
+  modulate_scale: False
+  modulate_shift: True
+  hypernet_depth: 1
+  hypernet_width: 128
+  last_activation: 
+  loss_type: "mse"
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

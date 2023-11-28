@@ -1,0 +1,55 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: "cylinder-flow" 
+  data_to_encode:
+  ntrain : 
+  ntest : 
+  sub_tr : 1
+  sub_from : 1
+  sub_te : 1
+  seed: 123
+  same_grid: True
+  sequence_length: 20
+
+optim:
+  batch_size: 64
+  batch_size_val: 
+  lr : 1e-3
+  weight_decay: 0
+  gamma_step : 0.9
+  epochs : 10000
+  
+model:
+  model_type: sage
+  width: 64
+  depth: 6
+  norm: "batch"
+  activation: 'relu'
+  width_encoder: 128
+  width_decoder: 128
+  depth_encoder: 2
+  depth_decoder: 2
+  dropout: 0
+  radius: 0.5
+  max_neighbours: 16 # 64 before
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

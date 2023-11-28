@@ -1,0 +1,26 @@
+data:
+  dir: "/data/serrano/deeponet-fourier-data/"
+  dataset_name: "kdv"
+  ntrain : 
+  ntest : 
+  sub_tr : 1
+  sub_te : 1
+  seed: 123
+  same_grid: True
+
+optim:
+  batch_size: 64 
+  lr_inr : 3e-6
+  lr_code : 0.01
+  weight_decay_code: 0
+  inner_steps : 3
+  test_inner_steps : 5
+  epochs : 5000
+  code_update_freq: 100
+  weight_decay: 0
+  use_detach: False
+  random_masking: 0
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"

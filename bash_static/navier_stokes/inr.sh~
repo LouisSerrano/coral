@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --partition=hard
+#SBATCH --job-name=functa
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=1
+#SBATCH --time=5000
+#SBATCH --output=slurm_run/navier_stokes/%x-%j.out
+#SBATCH --error=slurm_run/navier_stokes/%x-%j.err
+
+source $MINICONDA_PATH/etc/profile.d/conda.sh
+
+set -x
+conda init bash
+conda activate torch_nm
+
+data_to_encode="both"
+dataset_name="navier-stokes"
+
+srun python3 -m training.inr "data.dataset_name=${dataset_name}" 'data.sub_tr=1' 'optim.batch_size=64' 'inr.latent_dim=128' 'inr.hidden_dim=128' 'optim.epochs=10000' "data.data_to_encode=${data_to_encode}" 'inr.model_type=bacon' 'optim.lr_code=0.01' 'optim.lr_inr=5e-4' 'optim.lr_modulations=0.05' 

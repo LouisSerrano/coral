@@ -1,0 +1,67 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: "shallow-water-dino" 
+  data_to_encode:
+  ntrain : 
+  ntest : 
+  sub_from :
+  sub_tr : 2
+  sub_te : 2
+  seed: 123
+  same_grid: True
+  seq_inter_len : 20 
+  seq_extra_len : 20
+
+optim:
+  batch_size: 32
+  batch_size_val: 
+  lr_inr : 0.000005
+  gamma_step : 0.9
+  lr_code : 0.01
+  meta_lr_code : 0.000005
+  weight_decay_code: 0
+  inner_steps : 3
+  test_inner_steps : 3
+  epochs : 10000
+
+inr:
+  model_type : "bacon"
+  latent_dim : 64
+  depth : 4
+  hidden_dim : 64
+  use_latent: True
+  modulate_scale: False
+  modulate_shift: True
+  hypernet_depth: 1
+  hypernet_width: 128
+  last_activation: 
+  loss_type: "mse"
+  base_freq_multiplier : 1
+  quantization_multiplier: 2
+  input_scales: [0.125, 0.125, 0.25, 0.5]
+  output_layers: [3]
+  filter_type: fourier
+  mod_activation: None
+  frequency: [32, 32]
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  saved_checkpoint : False
+  sweep_id: 
+
+
+jz: 
+  program: training/inr..py
+  mode: dev
+  partition: gpu_p2

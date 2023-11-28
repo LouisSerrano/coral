@@ -1,0 +1,30 @@
+data:
+  dir: "/data/serrano/"
+  dataset_name: navier-stokes-dino
+  ntrain : 
+  ntest : 
+  data_to_encode: 
+  sub_from: 4
+  sub_tr: 0.05
+  sub_te: 0.05
+  seed: 123
+  same_grid: True
+  setting : 'extrapolation'
+  sequence_length_optim : 
+  sequence_length_in : 20
+  sequence_length_out : 20
+
+
+optim: 
+  batch_size: 1
+  batch_size_val: 
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+  

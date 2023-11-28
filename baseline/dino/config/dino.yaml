@@ -1,0 +1,49 @@
+data:
+  dir: "/data/serrano/"
+  dataset_name: navier-stokes-dino
+  ntrain : 
+  ntest : 
+  data_to_encode: 
+  sub_from : 4
+  sub_tr : 1
+  sub_te : 1
+  seed: 123
+  same_grid: True
+  setting : 'all'
+  sequence_length_optim : 
+  sequence_length_in : 40
+  sequence_length_out : 40
+
+optim:
+  checkpoint_path: 
+  batch_size: 6
+  batch_size_val: 
+  learning_rate : 1e-2
+  epochs : 12000
+  teacher_forcing_init: 0.99
+  teacher_forcing_decay: 0.99
+  teacher_forcing_update: 10
+
+inr:
+  model_type : "siren"
+  hidden_dim: 64
+  depth: 3
+  n_steps: 300
+  code_dim: 100
+
+dynamic:
+  hidden_dim: 512
+  method: "rk4"
+  
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

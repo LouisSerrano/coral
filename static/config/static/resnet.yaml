@@ -1,0 +1,58 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: "navier-stokes-dino" 
+  data_to_encode:
+  ntrain : 
+  ntest : 
+  sub_tr : 1
+  sub_from : 1
+  sub_te : 1
+  seed: 123
+  same_grid: True
+  sequence_length: 20
+
+optim:
+  batch_size: 64
+  batch_size_val: 
+  lr : 1e-3
+  weight_decay: 0
+  gamma_step : 0.9
+  epochs : 1000
+
+model:
+  model_type: resnet
+  depth: 3
+  width: 128
+  dropout: 0
+  activation: swish
+
+# airfoil
+inr:
+  inner_steps: 3
+  run_name: 
+  run_dict:
+    pressure: denim-frost-3448
+    density: fluent-planet-3586
+    vx: gallant-jazz-3402
+    vy: fresh-wave-3583
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

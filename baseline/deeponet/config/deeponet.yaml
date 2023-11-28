@@ -1,0 +1,41 @@
+data:
+  dir: "/data/serrano/"
+  dataset_name: shallow-water-dino
+  ntrain : 
+  ntest : 
+  data_to_encode: 
+  sub_from : 2
+  sub_tr : 2
+  sub_te : 2
+  seed: 123
+  same_grid: True
+  setting : 'extrapolation'
+  seq_inter_len : 20
+  seq_extra_len : 20
+
+optim:
+  checkpoint_path: 
+  batch_size: 10
+  batch_size_val: 
+  learning_rate : 1e-5
+  epochs : 12000
+
+deeponet:
+  model_type : "mlp"
+  width: 100
+  trunk_depth: 4
+  branch_depth: 4
+  run_name : frosty-night-4980 #radiant-meadow-4979 #leafy-rain-4872
+  
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

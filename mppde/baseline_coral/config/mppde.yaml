@@ -1,0 +1,45 @@
+data:
+  dir: "/data/serrano/"
+  dataset_name: navier-stokes-dino
+  ntrain : 
+  ntest : 
+  data_to_encode: 
+  sub_from : 4
+  sub_tr : 1
+  sub_te : 1
+  seed: 123
+  same_grid: True
+  setting : 'extrapolation'
+  sequence_length_optim : 
+  sequence_length_in : 20
+  sequence_length_out : 20
+
+optim:
+  batch_size: 4
+  batch_size_val: 
+  learning_rate : 1e-4
+  epochs : 20
+  weight_decay: 1e-8
+  neighbors: 8
+  time_window: 1
+  unrolling: 1
+  lr_decay: 0.4
+  print_interval : 5
+  checkpoint_path:
+  
+model:
+  model_type : 'GNN'
+  hidden_features : 128
+  
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

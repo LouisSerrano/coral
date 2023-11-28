@@ -1,0 +1,50 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: "navier-stokes-dino" 
+  same_grid: True
+  data_to_encode:
+  sub_from : 4
+  sub_tr : 1
+  sub_te : 4
+  ntrain : 
+  ntest : 
+  seed: 123
+  setting: "all"
+  sequence_length_optim: 2
+  sequence_length_in: 40
+  sequence_length_out: 0
+
+optim:
+  batch_size: 20
+  batch_size_val: 
+  learning_rate : 0.001
+  epochs : 500
+  scheduler_step : 100
+  scheduler_gamma : 0.5
+
+fno:
+  model_type : "fno"
+  modes : 12
+  width : 32
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+  result_dir:
+
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

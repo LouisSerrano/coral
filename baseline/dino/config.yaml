@@ -1,0 +1,55 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - forecaster: null
+  - wandb: null
+
+path_checkpoint:
+input_dataset: 'shallow-water-dino'
+gpu: 0
+subsampling_rate: 1
+home_folder: "/data/serrano/"
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: 'shallow-water-dino' #navier-stokes
+  data_to_encode : 
+  seed: 123
+  ntrain : 
+  ntest : 
+  sub_from : 2
+  sub_tr : 0.2
+  sub_te : 0.2
+  same_grid: True
+  seq_inter_len : 20
+  seq_extra_len : 20
+
+optim:
+  lr : 0.001
+  minibatch_size : 4
+  minibatch_val_size : 4
+  epochs : 10000
+
+inr:
+  state_dim : 1 # state_dim : 2 sw
+  code_dim : 100 # code_dim : 200 sw
+  hidden_c_enc : 64 # hidden_c_enc : 256 sw
+  n_layers : 3 # n_layers : 6 sw
+  coord_dim : 2 # coord_dim : 3 sw
+  run_name : dashing-sea-4984 #celestial-plasma-4870
+
+forecaster:
+  hidden_c : 512 # hidden_c : 800
+  teacher_forcing_init: 0.99
+  teacher_forcing_decay: 0.99
+  teacher_forcing_update: 5
+      
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 

@@ -1,0 +1,52 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - forecaster: null
+  - wandb: null
+
+path_checkpoint:
+input_dataset: 'navier-stokes-dino'
+gpu: 0
+subsampling_rate: 1
+home_folder: "/data/serrano/"
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: 'navier-stokes-dino' #navier-stokes
+  seed: 123
+  ntrain : 
+  ntest : 
+  sub_tr : 2
+  sub_te : 2
+  same_grid: True
+  seq_inter_len : 20
+  seq_extra_len : 20
+
+optim:
+  lr : 0.01
+  minibatch_size : 16
+  minibatch_val_size : 16
+  epochs : 12000
+
+inr:
+  state_dim : 1 # state_dim : 2 sw
+  code_dim : 100 # code_dim : 200 sw
+  hidden_c_enc : 64 # hidden_c_enc : 256 sw
+  n_layers : 3 # n_layers : 6 sw
+  coord_dim : 2 # coord_dim : 3 sw
+
+forecaster:
+  hidden_c : 512 # hidden_c : 800
+  teacher_forcing_init: 0.99
+  teacher_forcing_decay: 0.99
+  teacher_forcing_update: 10
+      
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 

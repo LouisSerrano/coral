@@ -1,0 +1,55 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - inr: null
+  - wandb: null
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: "shallow-water-dino" 
+  data_to_encode:
+  ntrain : 
+  ntest : 
+  sub_from : 2
+  sub_tr : 0.0125
+  sub_te : 0.0125
+  seed: 123
+  same_grid: True
+  seq_inter_len : 20
+  seq_extra_len : 20
+optim:
+  batch_size: 64
+  batch_size_val: 
+  lr : 0.001
+  weight_decay: 0
+  gamma_step : 0.9
+  epochs : 1000
+
+dynamics:
+  model_type: ode
+  depth: 3
+  width: 512
+  teacher_forcing_init: 0.99
+  teacher_forcing_decay: 0.99
+  teacher_forcing_update: 10
+  run_name : prime-darkness-4874 # sandy-pyramid-4897 #prime-darkness-4874 #iconic-firefly-4657 #atomic-surf-4656
+
+inr:
+  inner_steps: 3
+  run_name: 
+  run_dict:
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
+
+
+jz: 
+  program: training/inr.py
+  mode: dev
+  partition: gpu_p2

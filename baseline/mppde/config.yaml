@@ -1,0 +1,46 @@
+defaults:
+  - _self_
+  - data: null
+  - optim: null
+  - wandb: null
+  - model : null
+
+data:
+  dir: "/data/serrano/"
+  dataset_name: "shallow-water-dino" 
+  data_to_encode:
+  ntrain :
+  ntest :
+  sub_from : 2
+  sub_tr : 4
+  sub_te : 4
+  seed: 123
+  same_grid: True
+  seq_inter_len : 20
+  seq_extra_len : 20
+
+optim:
+  batch_size: 4
+  batch_size_val: 
+  lr : 0.001
+  weight_decay: 0
+  gamma_step : 0.9
+  epochs : 20
+  neighbors: 8
+  time_window: 1
+  unrolling: 1
+  lr_decay: 0.4
+  print_interval : 5
+
+model:
+  model_type : 'GNN'
+  hidden_features : 128
+  run_name : generous-thunder-4899 # balmy-cloud-4775 # silvery-disco-4791
+
+wandb:
+  entity: "spatiotemp-isir"
+  project: "functa2functa"
+  name: 
+  id: 
+  dir: 
+  sweep_id: 
