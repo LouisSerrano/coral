@@ -1,5 +1,5 @@
 # 0. Official Code
-Official implementation of CORAL (Neurips 2023): https://arxiv.org/abs/2306.07266
+Official PyTorch implementation of implementation of CORAL | [https://arxiv.org/abs/2306.07266](Arxiv)
 
 
 
