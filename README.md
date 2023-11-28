@@ -1,7 +1,8 @@
 # 0. Official Code
 Official PyTorch implementation of CORAL | [Accepted at Neurips 2023](https://openreview.net/forum?id=4jEjq5nhg1&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DNeurIPS.cc%2F2023%2FConference%2FAuthors%23your-submissions)) | [Arxiv](https://arxiv.org/abs/2306.07266)
 
-![plot](./images/poster_inference.pdf)
+![plot](./images/poster_inference.png)
+![plot](./images/poster_siren.png)
 
 
 # 1. Code installation and setup
@@ -37,6 +38,8 @@ export MINICONDA_PATH=your_anaconda_path
 
 
 # 3. Run experiments 
+![plot](./images/poster_training.png)
+
 The code runs only on GPU. We provide sbatch configuration files to run the training scripts. They are located in `bash_static` and `bash_dynamics`. 
 We expect the user to have wandb installed in its environment to ease the 2-step training. 
 For all tasks, the first step is to launch an inr.py training. The weights of the inr model are automatically saved under its `run_name`.
@@ -44,6 +47,9 @@ For the second step, i.e. for training the dynamics or inference model, we need 
 We provide examples of the python scripts that need to be run.
 
 ## IVP
+
+![plot](./images/cylinder_flow_3.png)
+
   * airfoil-flow: 
   ``` 
   python3 static/train/ivp_inr.py "data.dataset_name=airfoil-flow" 'optim.epochs=5000' 'inr_in.w0=5' 'inr_out.w0=5' 'inr_in.latent_dim=128' 'inr_in.hidden_dim=256' 'inr_out.hidden_dim=256' 'inr_out.latent_dim=128' 'model.width=256' 'optim.batch_size=32' 'optim.meta_lr_code=5e-6'
@@ -61,7 +67,9 @@ We provide examples of the python scripts that need to be run.
  
 
 ## Design
+
 * naca-euler:
+![plot](./images/airfoil_prediction.png)
 ```
 python3 static/train/design_inr.py "data.dataset_name=airfoil" 'optim.epochs=5000' 'inr_in.w0=5' 'inr_out.w0=15' 'optim.lr_inr=1e-4' 'optim.meta_lr_code=1e-4'
 ```
@@ -70,6 +78,8 @@ python3 static/train/design_inr.py "data.dataset_name=airfoil" 'optim.epochs=500
 python3 static/train/design_regression.py "data.dataset_name=airfoil" "inr.run_name=glowing-music-4181" 'optim.epochs=10000'
 ```
 * elasticity
+
+![plot](./images/elasticity_prediction.png)
 ```
 python3 static/train/design_inr.py "data.dataset_name=elasticity" 'optim.batch_size=64' 'optim.epochs=5000' 'inr_in.w0=10' 'inr_out.w0=15' 'optim.lr_inr=1e-4' 'optim.meta_lr_code=1e-4' 
 ```
@@ -87,6 +97,7 @@ python3 static/train/design_regression.py "data.dataset_name=pipe" "inr.run_name
 
 ## Dynamics modeling
 * navier-stokes:
+![plot](./images/ns-qual-res.jpg)
 ```
 python3 inr/inr.py "data.sub_from=$sub_from" "data.same_grid=$same_grid" "data.dataset_name=$dataset_name" "inr.model_type=$model_type" "data.seq_inter_len=$seq_inter_len" "data.seq_extra_len=$seq_extra_len" "data.sub_tr=$sub_tr" "data.sub_te=$sub_te" "optim.lr_inr=$lr_inr" "inr.depth=$depth" "inr.latent_dim=$latent_dim" "inr.hidden_dim=$hidden_dim" "optim.batch_size=$batch_size" "optim.epochs=$epochs" "wandb.saved_checkpoint=$saved_checkpoint" #"wandb.name=$name" "wandb.id=$id" "wandb.dir=$dir" "wandb.checkpoint_path=$checkpoint_path"
 ```
