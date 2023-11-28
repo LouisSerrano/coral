@@ -1,5 +1,5 @@
 # 0. Official Code
-Official PyTorch implementation of implementation of CORAL | [Arxiv](https://arxiv.org/abs/2306.07266)
+Official PyTorch implementation of CORAL | [Accepted at Neurips 2023](https://openreview.net/forum?id=4jEjq5nhg1&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DNeurIPS.cc%2F2023%2FConference%2FAuthors%23your-submissions)) [Arxiv](https://arxiv.org/abs/2306.07266)
 
 
 
