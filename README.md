@@ -1,9 +1,11 @@
 # 0. Official Code
 Official PyTorch implementation of CORAL | [Accepted at Neurips 2023](https://openreview.net/forum?id=4jEjq5nhg1&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DNeurIPS.cc%2F2023%2FConference%2FAuthors%23your-submissions)) | [Arxiv](https://arxiv.org/abs/2306.07266)
 
+<p float="left">
+  <img src="./images/poster_inference.png" width="400" />
+  <img src="./images/poster_siren.png" width="400" /> 
+</p>
 
-<img src="./images/poster_inference.png" width="100">
-<img src="./images/poster_siren.png" width="100">
 
 
 # 1. Code installation and setup
