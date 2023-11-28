@@ -1,3 +1,7 @@
+# 0. Official Code
+Official implementation of CORAL (Neurips 2023): https://arxiv.org/abs/2306.07266
+
+
 
 # 1. Code installation and setup
 ## coral installation
