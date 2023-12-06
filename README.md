@@ -7,6 +7,7 @@ Official PyTorch implementation of CORAL | [Accepted at Neurips 2023](https://op
 </p>
 
 To cite our work:
+```
 @article{serrano2023operator,
       title={Operator Learning with Neural Fields: Tackling PDEs on General Geometries}, 
       author={Louis Serrano and Lise Le Boudec and Armand Kassaï Koupaï and Thomas X Wang and Yuan Yin and Jean-Noël Vittaut and Patrick Gallinari},
@@ -14,6 +15,7 @@ To cite our work:
       year={2023},
       url={https://arxiv.org/abs/2306.07266}
 }
+```
 
 # 1. Code installation and setup
 ## coral installation
