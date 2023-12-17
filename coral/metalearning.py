@@ -230,6 +230,7 @@ def graph_inner_loop(
                 graph_inner_loop_step,
                 func_rep,
                 fitted_modulations,
+                coords,
                 features,
                 torch.as_tensor(inner_lr),
                 torch.as_tensor(is_train),
