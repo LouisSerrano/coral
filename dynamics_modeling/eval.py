@@ -8,13 +8,12 @@ from coral.utils.models.get_inr_reconstructions import get_reconstructions
 def batch_eval_loop(model, inr, loader, timestamps, detailed_mse, 
                      n, multichannel, z_mean, z_std, dataset_name, 
                      interpolation_seq):
-
     if interpolation_seq:
         pred_mse_inter = 0
         code_mse_inter = 0
         pred_mse_extra = 0
         code_mse_extra = 0
-        pred_mse = 0
+        total_pred_mse = 0  # Rename to avoid confusion with pred_mse in the loop
         
         for images, modulations, coords, idx in loader:
             model.eval()
@@ -41,24 +40,24 @@ def batch_eval_loop(model, inr, loader, timestamps, detailed_mse,
                 inr, coords, z_pred, z_mean, z_std, dataset_name
             )
             pred_mse = ((pred - images) ** 2)
-            pred_mse_inter = pred_mse[..., :interpolation_seq].mean()
-            pred_mse_extra = pred_mse[..., interpolation_seq:].mean()
-            pred_mse = pred_mse.mean()
-            pred_mse_inter += pred_mse_inter * n_samples
-            pred_mse_extra += pred_mse_extra * n_samples
-            pred_mse += pred_mse * n_samples
+            pred_mse_inter_local = pred_mse[..., :interpolation_seq].mean()
+            pred_mse_extra_local = pred_mse[..., interpolation_seq:].mean()
+            total_pred_mse += pred_mse.mean() * n_samples
+            pred_mse_inter += pred_mse_inter_local.item() * n_samples
+            pred_mse_extra += pred_mse_extra_local.item() * n_samples
 
             if multichannel:
                 detailed_mse.aggregate(pred, images)
                 
-        pred_mse_inter = pred_mse_inter / n
-        pred_mse_extra = pred_mse_extra / n
-        code_mse_inter = code_mse_inter / n
-        code_mse_extra = code_mse_extra / n      
-        return pred_mse_inter, code_mse_inter, pred_mse_extra, code_mse_extra, pred_mse, detailed_mse
+        pred_mse_inter /= n
+        pred_mse_extra /= n
+        code_mse_inter /= n
+        code_mse_extra /= n      
+        total_pred_mse /= n
+        return pred_mse_inter, code_mse_inter, pred_mse_extra, code_mse_extra, total_pred_mse, detailed_mse
     
     else:
-        pred_mse = 0
+        total_pred_mse = 0  # Use a different variable name for clarity
         code_mse = 0
         for images, modulations, coords, idx in loader:
             model.eval()
@@ -80,11 +79,11 @@ def batch_eval_loop(model, inr, loader, timestamps, detailed_mse,
             pred = get_reconstructions(
                 inr, coords, z_pred, z_mean, z_std, dataset_name
             )
-            pred_mse += ((pred - images) ** 2).mean() * n_samples
+            total_pred_mse += ((pred - images) ** 2).mean().item() * n_samples
 
             if multichannel:
                 detailed_mse.aggregate(pred, images)
 
-        code_mse = code_mse / n
-        pred_mse = pred_mse / n
-        return pred_mse, code_mse, detailed_mse
+        code_mse /= n
+        total_pred_mse /= n
+        return total_pred_mse, code_mse, detailed_mse
