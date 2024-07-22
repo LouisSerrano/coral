@@ -44,7 +44,7 @@ export MINICONDA_PATH=your_anaconda_path
 # 2. Data
 
 * IVP: Cylinder and Airfoil datasets can be downloaded from : https://github.com/deepmind/deepmind-research/tree/master/meshgraphnets
-* Dynamics Modeling: NS and SW data can be generated using https://github.com/mkirchmeyer/DINo (SW data accessible here after issues raised by @wanghonghui1998 : https://drive.google.com/drive/folders/1RlH4E7-dnKOEA6Zur2EdK-HuEaW_PC8w?usp=sharing)
+* Dynamics Modeling: NS and SW data can be generated using https://github.com/mkirchmeyer/DINo (SW data accessible here after issues raised by [wanghonghui1998](https://github.com/wanghonghui1998) : https://drive.google.com/drive/folders/1RlH4E7-dnKOEA6Zur2EdK-HuEaW_PC8w?usp=sharing)
 * Geo-FNO: NACA-Euler, Elasticity and pipe data can be downloaded from https://drive.google.com/drive/folders/1YBuaoTdOSr_qzaow-G-iwvbUI7fiUzu8 (Note that NACA-Euler stands for Airfoil in this google drive)
 
 
